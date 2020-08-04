@@ -1,5 +1,5 @@
 {% set name = "cyclonedds" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/eclipse-cyclonedds/cyclonedds/archive/V{{ version }}.tar.gz
-    sha256: ddbb9c7a3e50e59cd3498dfc919c5ff3d31f89efd690d6c6c24376dc22d3ba45
+    sha256: 40622c6ee9f785cc3b2f053615e94c28562085f18c2b3553c822d31a0efd0139
 
 build:
   number: 0
