@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/eclipse-cyclonedds/cyclonedds/archive/{{ version }}.tar.gz
-    sha256: 40622c6ee9f785cc3b2f053615e94c28562085f18c2b3553c822d31a0efd0139
+    sha256: 75e8c54a084e80a59d153087041680985dbb035e281744f2b69330bc0de7ce13
 
 build:
   number: 1
