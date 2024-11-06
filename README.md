@@ -5,7 +5,7 @@ Home: https://github.com/eclipse-cyclonedds/cyclonedds
 
 Package license: EPL-2.0
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cyclonedds-feedstock/blob/master/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/cyclonedds-feedstock/blob/main/LICENSE.txt)
 
 Summary: Eclipse Cyclone DDS
 
@@ -21,8 +21,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -30,15 +30,15 @@ Current build status
           <tbody><tr>
               <td>win_64_openssl1.1.1</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=master&jobName=win&configuration=win_64_openssl1.1.1" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openssl1.1.1" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>win_64_openssl3</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=master&jobName=win&configuration=win_64_openssl3" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9319&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/cyclonedds-feedstock?branchName=main&jobName=win&configuration=win%20win_64_openssl3" alt="variant">
                 </a>
               </td>
             </tr>
