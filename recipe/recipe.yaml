@@ -1,0 +1,56 @@
+context:
+  name: cyclonedds
+  version: 0.10.5
+
+package:
+  name: "{{ context.name }}"
+  version: "{{ context.version }}"
+
+source:
+  - url: "https://github.com/eclipse-cyclonedds/cyclonedds/archive/{{ context.version }}.tar.gz"
+    sha256: ec3ec898c52b02f939a969cd1a276e219420e5e8419b21cea276db35b4821848
+
+build:
+  number: 0
+  script: |
+    cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True %SRC_DIR%
+    cmake --build . --config Release --target install
+  # run_exports:
+  #   - "{{ pin_subpackage(context.name, max_pin='x.x') }}"
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - "{{ stdlib('c') }}"
+    - cmake
+    - maven
+    - openjdk
+    - ninja
+  host:
+    - openssl
+
+tests:
+  package_contents:
+    bin:
+      - if: win
+        then:
+          - bin/ddsc.dll
+
+about:
+  homepage: https://github.com/eclipse-cyclonedds/cyclonedds
+  license: EPL-2.0
+  license_file: LICENSE.txt
+  summary: Eclipse Cyclone DDS
+  description: |
+    Eclipse Cyclone DDS is a very performant and robust open-source implementation of the OMG DDS specification.
+    Cyclone DDS is developed completely in the open as an Eclipse IoT project (see eclipse-cyclone-dds)
+    with a growing list of adopters (if you're one of them, please add your logo).
+    It is a tier-1 middleware for the Robot Operating System ROS 2.
+  repository: https://github.com/eclipse-cyclonedds/cyclonedds
+  documentation: https://projects.eclipse.org/projects/iot.cyclonedds
+
+extra:
+  maintainers:
+    - seanyen
+    - phreed
