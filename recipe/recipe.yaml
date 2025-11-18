@@ -12,9 +12,22 @@ source:
 
 build:
   number: 0
-  script: |
-    cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True %SRC_DIR%
-    cmake --build . --config Release --target install
+  script:
+    - if: win
+      then: |
+        cmake -G "Ninja" ^
+            -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True ^
+            -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+            %SRC_DIR%
+        cmake --build . --config Release --target install
+      else: |
+        cmake -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True \
+            -DCMAKE_INSTALL_PREFIX=$PREFIX \
+            $SRC_DIR
+        cmake --build . --config Release --target install
   # run_exports:
   #   - "{{ pin_subpackage(context.name, max_pin='x.x') }}"
 
@@ -22,7 +35,7 @@ requirements:
   build:
     - "${{ compiler('cxx') }}"
     - "${{ compiler('c') }}"
-    - "${{ stdlib('c') }}"
+    # - "${{ stdlib('c') }}"
     - cmake
     - maven
     - openjdk
@@ -30,31 +43,29 @@ requirements:
   host:
     - openssl
 
-# tests:
-#   package_contents:
-#     bin:
-#       - if: win
-#         then:
-#           - bin/ddsc.dll
-#       - if: linux
-#         then:
-#           - bin/ddsc
-#       - if: osx
-#         then:
-#           - bin/ddsc
+tests:
+  - package_contents:
+      bin:
+        - if: win
+          then:
+            - ddsc.dll
+          else:
+            - ddsc
 
 about:
   homepage: https://github.com/eclipse-cyclonedds/cyclonedds
   license: EPL-2.0
-  license_file: LICENSE.txt
+  license_file:
+    - LICENSE
+    - LICENSE.txt
   summary: Eclipse Cyclone DDS
   description: |
     Eclipse Cyclone DDS is a very performant and robust open-source implementation of the OMG DDS specification.
     Cyclone DDS is developed completely in the open as an Eclipse IoT project (see eclipse-cyclone-dds)
     with a growing list of adopters (if you're one of them, please add your logo).
     It is a tier-1 middleware for the Robot Operating System ROS 2.
-  repository: https://github.com/eclipse-cyclonedds/cyclonedds
   documentation: https://projects.eclipse.org/projects/iot.cyclonedds
+  repository: https://github.com/eclipse-cyclonedds/cyclonedds
 
 extra:
   maintainers:
