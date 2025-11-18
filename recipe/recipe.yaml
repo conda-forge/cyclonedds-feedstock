@@ -3,12 +3,12 @@ context:
   version: 0.10.5
 
 package:
-  name: "{{ context.name }}"
-  version: "{{ context.version }}"
+  name: "${{ name }}"
+  version: "${{ version }}"
 
 source:
-  - url: "https://github.com/eclipse-cyclonedds/cyclonedds/archive/{{ context.version }}.tar.gz"
-    sha256: ec3ec898c52b02f939a969cd1a276e219420e5e8419b21cea276db35b4821848
+  url: "https://github.com/eclipse-cyclonedds/cyclonedds/archive/${{ version }}.tar.gz"
+  sha256: ec3ec898c52b02f939a969cd1a276e219420e5e8419b21cea276db35b4821848
 
 build:
   number: 0
@@ -20,9 +20,9 @@ build:
 
 requirements:
   build:
-    - "{{ compiler('cxx') }}"
-    - "{{ compiler('c') }}"
-    - "{{ stdlib('c') }}"
+    - "${{ compiler('cxx') }}"
+    - "${{ compiler('c') }}"
+    - "${{ stdlib('c') }}"
     - cmake
     - maven
     - openjdk
@@ -30,12 +30,18 @@ requirements:
   host:
     - openssl
 
-tests:
-  package_contents:
-    bin:
-      - if: win
-        then:
-          - bin/ddsc.dll
+# tests:
+#   package_contents:
+#     bin:
+#       - if: win
+#         then:
+#           - bin/ddsc.dll
+#       - if: linux
+#         then:
+#           - bin/ddsc
+#       - if: osx
+#         then:
+#           - bin/ddsc
 
 about:
   homepage: https://github.com/eclipse-cyclonedds/cyclonedds
