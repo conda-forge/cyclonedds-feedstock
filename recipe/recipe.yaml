@@ -35,7 +35,7 @@ requirements:
   build:
     - "${{ compiler('cxx') }}"
     - "${{ compiler('c') }}"
-    # - "${{ stdlib('c') }}"
+    - "${{ stdlib('c') }}"
     - cmake
     - maven
     - openjdk
@@ -45,19 +45,15 @@ requirements:
 
 tests:
   - package_contents:
-      bin:
-        - if: win
-          then:
-            - ddsc.dll
-          else:
-            - ddsc
+      lib:
+        - ddsc
+      include:
+        - ddsc/dds.h
 
 about:
   homepage: https://github.com/eclipse-cyclonedds/cyclonedds
   license: EPL-2.0
-  license_file:
-    - LICENSE
-    - LICENSE.txt
+  license_file: LICENSE
   summary: Eclipse Cyclone DDS
   description: |
     Eclipse Cyclone DDS is a very performant and robust open-source implementation of the OMG DDS specification.
@@ -68,6 +64,6 @@ about:
   repository: https://github.com/eclipse-cyclonedds/cyclonedds
 
 extra:
-  maintainers:
+  recipe-maintainers:
     - seanyen
     - phreed
