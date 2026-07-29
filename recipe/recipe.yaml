@@ -42,9 +42,6 @@ requirements:
   host:
     - openssl
     - iceoryx
-
-  run:
-    - iceoryx
   run_exports:
     - "${{ pin_subpackage('cyclonedds', upper_bound='x.x') }}"
 
