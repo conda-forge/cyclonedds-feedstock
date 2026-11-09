@@ -19,7 +19,7 @@ build:
             -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True ^
             -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
             -DENABLE_ICEORYX=ON ^
-            -S %SRC_DIR% \
+            -S %SRC_DIR% ^
             -B build
         cmake --build build --config Release --target install
       else: |
