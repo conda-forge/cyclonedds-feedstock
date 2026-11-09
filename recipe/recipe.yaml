@@ -19,16 +19,18 @@ build:
             -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True ^
             -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
             -DENABLE_ICEORYX=ON ^
-            %SRC_DIR%
-        cmake --build . --config Release --target install
+            -S %SRC_DIR% \
+            -B build
+        cmake --build build --config Release --target install
       else: |
         cmake -G "Ninja" \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True \
             -DCMAKE_INSTALL_PREFIX=$PREFIX \
             -DENABLE_ICEORYX=ON \
-            $SRC_DIR
-        cmake --build . --config Release --target install
+            -S $SRC_DIR \
+            -B build
+        cmake --build build --config Release --target install
 
 requirements:
   build:
