@@ -1,5 +1,5 @@
 context:
-  version: 11.0.1
+  version: "11.1.0"
 
 package:
   name: cyclonedds
@@ -7,10 +7,10 @@ package:
 
 source:
   url: "https://github.com/eclipse-cyclonedds/cyclonedds/archive/${{ version }}.tar.gz"
-  sha256: c25d46075ad6b5cee564bda9e5f49509e9a6dbb1a8b858e708eb360d335cf973
+  sha256: ac1a07cfd58da678d9ba2dc215863c6e3bc2afdd30295b241f5ed99818188182
 
 build:
-  number: 2
+  number: 0
   script:
     - if: win
       then: |
@@ -19,16 +19,18 @@ build:
             -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True ^
             -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
             -DENABLE_ICEORYX=ON ^
-            %SRC_DIR%
-        cmake --build . --config Release --target install
+            -S %SRC_DIR% ^
+            -B build
+        cmake --build build --config Release --target install
       else: |
         cmake -G "Ninja" \
             -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=True \
             -DCMAKE_INSTALL_PREFIX=$PREFIX \
             -DENABLE_ICEORYX=ON \
-            $SRC_DIR
-        cmake --build . --config Release --target install
+            -S $SRC_DIR \
+            -B build
+        cmake --build build --config Release --target install
 
 requirements:
   build:
